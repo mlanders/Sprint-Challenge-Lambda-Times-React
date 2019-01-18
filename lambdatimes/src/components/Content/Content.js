@@ -10,15 +10,16 @@ export default class Content extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selected: 'all',
+			selected: 'node',
 			tabs: [],
 			cards: [],
+			allData: [],
 		};
 	}
 
 	componentDidMount() {
 		// Once the component has mounted, get the data and reflect that data on the state.
-		this.setState({ tabs: tabData, cards: cardData });
+		this.setState({ tabs: tabData, cards: cardData, allData: cardData });
 	}
 
 	changeSelected = tab => {
@@ -45,8 +46,7 @@ export default class Content extends Component {
     */
 		let filtered = [];
 		if (this.state.selected === 'all') {
-			this.setState({ cards: cardData });
-			return this.state.cards;
+			return this.state.allData;
 		} else {
 			return (filtered = this.state.cards.filter(
 				card => card.tab === this.state.selected
